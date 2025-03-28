@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('parcels', function (Blueprint $table) {
             $table->id();
             $table->string("tracking_number");
-            $table->foreignId('sender_id')->constrained()->onDelete("cascade");
+            $table->foreignId('sender_id')->constrained('users')->onDelete("cascade");
             $table->string('receiver_name');
             $table->string('receiver_address');
             $table->float("weight");
             $table->float("cost");
-            $table->string("status");
+            $table->enum('status', ['pending', 'shipped', 'delivered', 'cancelled'])->default('pending');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

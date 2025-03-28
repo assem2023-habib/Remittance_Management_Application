@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('parcel_id')->constrained()->onDelete('cascade');
             $table->string('status');
             // $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreignId("created_by")->constrained();
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->string('created_by_type')->nullable();
             $table->enum('operation', [
                 "insert",

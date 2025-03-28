@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('employee_id')->constrained()->onDelete("cascade");
             $table->text('report_details');
+            $table->enum('report_type', ['daily', 'incident', 'shipment_status'])->default('daily');
             $table->timestamps();
         });
     }

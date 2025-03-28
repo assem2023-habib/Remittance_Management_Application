@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id");
+            $table->foreignId("user_id")->constrained()->onDelete('cascade');
             $table->integer("total_parcels_sent");
             $table->float('total_rewards');
             $table->date("last_activity");
